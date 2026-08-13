@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrewCraft — Harsh Verma Portfolio Concierge & AI Guide</title>
+<title>Harsh Verma — Principal AI & Cybersecurity Engineer | BrewCraft Digital Hub</title>
 
 <!-- Modern Typography from Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,37 +18,37 @@
     --font-body: 'Inter', sans-serif;
     
     /* Default Theme: Sleek Dark Artisan */
-    --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 50%, #080c14 100%);
-    --card-bg: rgba(17, 24, 39, 0.75);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --card-hover-border: rgba(245, 158, 11, 0.5);
+    --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 50%, #060911 100%);
+    --card-bg: rgba(17, 24, 39, 0.8);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --card-hover-border: rgba(245, 158, 11, 0.6);
     --accent: #f59e0b;
     --accent-glow: rgba(245, 158, 11, 0.25);
     --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     --text-primary: #f9fafb;
     --text-secondary: #9ca3af;
-    --chat-bg: rgba(15, 23, 42, 0.85);
+    --chat-bg: rgba(15, 23, 42, 0.9);
     --user-msg-bg: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-    --agent-msg-bg: rgba(30, 41, 59, 0.8);
+    --agent-msg-bg: rgba(30, 41, 59, 0.85);
     --radius: 16px;
-    --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     --blur: blur(16px);
   }
 
   /* Glassmorphism Tech Hub Theme */
   body.theme-glassmorphism {
     --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 100%);
-    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-bg: rgba(15, 23, 42, 0.7);
     --card-border: rgba(6, 182, 212, 0.25);
-    --card-hover-border: rgba(6, 182, 212, 0.7);
+    --card-hover-border: rgba(6, 182, 212, 0.8);
     --accent: #06b6d4;
-    --accent-glow: rgba(6, 182, 212, 0.3);
+    --accent-glow: rgba(6, 182, 212, 0.35);
     --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
-    --chat-bg: rgba(15, 23, 42, 0.9);
+    --chat-bg: rgba(15, 23, 42, 0.95);
     --user-msg-bg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-    --agent-msg-bg: rgba(30, 41, 59, 0.85);
+    --agent-msg-bg: rgba(30, 41, 59, 0.9);
   }
 
   /* Neo-Brutalist Dashboard Theme */
@@ -89,7 +89,7 @@
     z-index: 100;
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
-    background: rgba(15, 23, 42, 0.7);
+    background: rgba(15, 23, 42, 0.85);
     border-bottom: 1px solid var(--card-border);
     padding: 1rem 2rem;
     display: flex;
@@ -107,6 +107,7 @@
     color: var(--text-primary);
   }
   .logo span { color: var(--accent); }
+  
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -132,7 +133,7 @@
   .theme-switcher {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     background: rgba(255, 255, 255, 0.05);
     padding: 0.3rem 0.5rem;
     border-radius: 999px;
@@ -157,7 +158,7 @@
 
   /* --- Container & Layout --- */
   .container {
-    max-width: 1280px;
+    max-width: 1320px;
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
     display: grid;
@@ -168,8 +169,8 @@
     .container { grid-template-columns: 1fr; }
   }
 
-  /* --- Hero Section --- */
-  .hero-card {
+  /* --- Hero Header Profile Card --- */
+  .profile-hero {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     backdrop-filter: var(--blur);
@@ -181,46 +182,111 @@
     position: relative;
     overflow: hidden;
   }
-  .hero-card::before {
+  .profile-hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 300px;
-    height: 300px;
+    top: -40%;
+    right: -15%;
+    width: 350px;
+    height: 350px;
     background: var(--accent-glow);
-    filter: blur(80px);
+    filter: blur(100px);
     border-radius: 50%;
     pointer-events: none;
   }
-  .hero-title {
+  .profile-header-flex {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 640px) {
+    .profile-header-flex { flex-direction: column; text-align: center; }
+  }
+  .avatar-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .profile-name {
     font-family: var(--font-heading);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
   }
-  .hero-subtitle {
-    font-size: 1.15rem;
+  .profile-title-role {
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .profile-location {
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    max-width: 680px;
-  }
-  .hero-banner-img {
-    width: 100%;
-    border-radius: calc(var(--radius) - 4px);
-    border: 1px solid var(--card-border);
-    margin-bottom: 1.5rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 
-  /* --- Grid Cards (Blogs, Coffee, Services) --- */
+  /* Accolades & Badges Pill Cloud */
+  .badge-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .accolade-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .accolade-badge span { color: var(--accent); }
+
+  /* Social Link Icons Toolbar */
+  .social-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--card-border);
+  }
+  .social-link {
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.25s ease;
+  }
+  .social-link:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* --- Section Cards --- */
   .section-heading {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 1.25rem;
     display: flex;
@@ -264,15 +330,16 @@
   }
   .item-title {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: var(--text-primary);
   }
   .item-desc {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
+    line-height: 1.5;
   }
   .btn-action {
     display: inline-flex;
@@ -283,7 +350,7 @@
     border-radius: 8px;
     background: var(--accent-gradient);
     color: #fff;
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     font-weight: 600;
     border: none;
     cursor: pointer;
@@ -292,7 +359,7 @@
   }
   .btn-action:hover { opacity: 0.9; }
 
-  /* --- Agent Chat Widget Panel --- */
+  /* --- Agent Chat Console Widget --- */
   .chat-widget {
     background: var(--chat-bg);
     border: 1px solid var(--card-border);
@@ -302,13 +369,13 @@
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    height: 720px;
+    height: 740px;
     position: sticky;
     top: 90px;
     overflow: hidden;
   }
   .chat-header {
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(15, 23, 42, 0.85);
     border-bottom: 1px solid var(--card-border);
     padding: 1rem 1.25rem;
     display: flex;
@@ -365,7 +432,7 @@
     gap: 0.5rem;
     padding: 1rem;
     border-top: 1px solid var(--card-border);
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(15, 23, 42, 0.85);
   }
   .chat-input {
     flex: 1;
@@ -442,8 +509,8 @@
 <!-- Top Navigation -->
 <nav>
   <div class="logo">
-    <span class="material-symbols-outlined">coffee_maker</span>
-    BrewCraft <span>Concierge</span>
+    <span class="material-symbols-outlined">psychology</span>
+    Harsh Verma <span>AI Portal</span>
   </div>
 
   <div style="display: flex; align-items: center; gap: 1rem;">
@@ -463,94 +530,146 @@
 <!-- Main Portfolio Layout -->
 <div class="container">
   
-  <!-- Left Column: Portfolio Content -->
+  <!-- Left Column: Real Profile Content -->
   <div>
-    <!-- Hero Banner -->
-    <div class="hero-card">
-      <h1 class="hero-title">Harsh Verma</h1>
-      <p class="hero-subtitle">
-        AI & Agentic Systems Architect • Founder of BrewCraft Intelligence • Cybersecurity Advisory
+    <!-- Hero Profile Card -->
+    <div class="profile-hero">
+      <div class="profile-header-flex">
+        <img src="https://cdn2.lnk.bi/profilepics/-2680591_20260517960.jpg" alt="Harsh Verma" class="avatar-img">
+        <div>
+          <h1 class="profile-name">Harsh Verma</h1>
+          <div class="profile-title-role">Principal AI & Cybersecurity Engineer</div>
+          <div class="profile-location">
+            <span class="material-symbols-outlined" style="font-size: 1rem;">location_on</span> San Francisco Bay Area (CA), United States
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
+        Silicon Valley-based AI & Cybersecurity leader developing autonomous software, distributed intelligence, and enterprise security platforms. 12+ years of experience building resilient production infrastructure and agentic systems.
       </p>
-      <img src="/hero.png" alt="BrewCraft AI Banner" class="hero-banner-img">
-      <p style="font-size: 0.95rem; color: var(--text-secondary);">
-        Welcome to my interactive portfolio concierge! Ask BrewCraft AI to explore my AI security blogs, research keynotes, specialty coffee roasting guide, or book a 1-on-1 architecture consultation.
-      </p>
+
+      <!-- Honors & Badges -->
+      <div class="badge-cloud">
+        <div class="accolade-badge"><span class="material-symbols-outlined">workspace_premium</span> Forbes Tech Council Member</div>
+        <div class="accolade-badge"><span class="material-symbols-outlined">verified</span> IEEE Senior Member</div>
+        <div class="accolade-badge"><span class="material-symbols-outlined">school</span> Stanford GSB Distinguished Scholar</div>
+        <div class="accolade-badge"><span class="material-symbols-outlined">military_tech</span> Global Recognition Award 2026</div>
+        <div class="accolade-badge"><span class="material-symbols-outlined">rocket_launch</span> Berkeley SkyDeck Advisor</div>
+      </div>
+
+      <!-- Social & Professional Links -->
+      <div class="social-toolbar">
+        <a href="https://www.linkedin.com/in/harshverma59/" target="_blank" class="social-link">
+          <span class="material-symbols-outlined">link</span> LinkedIn
+        </a>
+        <a href="https://github.com/iamharshverma" target="_blank" class="social-link">
+          <span class="material-symbols-outlined">code</span> GitHub
+        </a>
+        <a href="https://substack.com/@aiwithharsh" target="_blank" class="social-link">
+          <span class="material-symbols-outlined">rss_feed</span> Substack
+        </a>
+        <a href="https://www.harshverma.me/" target="_blank" class="social-link">
+          <span class="material-symbols-outlined">language</span> HarshVerma.me
+        </a>
+        <a href="https://harshverma.bio" target="_blank" class="social-link">
+          <span class="material-symbols-outlined">hub</span> Link Bio
+        </a>
+      </div>
     </div>
 
-    <!-- Featured Blogs & Keynotes -->
+    <!-- Featured Thought Leadership Publications -->
     <div class="section-heading">
-      <span class="material-symbols-outlined">article</span> Technical Blogs & Keynotes
+      <span class="material-symbols-outlined">article</span> Forbes & HackerNoon Thought Leadership
     </div>
     <div class="grid-2">
       <div class="portfolio-item">
         <div>
-          <span class="tag">Agentic AI</span>
-          <div class="item-title">Architecting Autonomous Agentic Systems with Gemini ADK</div>
-          <div class="item-desc">Multi-agent orchestration, function calling, and Vertex AI Memory Bank integration.</div>
+          <span class="tag">Forbes Tech Council</span>
+          <div class="item-title">Identity is the New Perimeter in AI Systems</div>
+          <div class="item-desc">Managing AI agents as digital actors and why network perimeters are being replaced by identity governance.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Tell me about the Autonomous Agentic Systems blog')">Read Summary</button>
+        <button class="btn-action" onclick="sendQuery('Tell me about Harsh Verma\'s Forbes article on Identity as the new perimeter')">Read Summary</button>
       </div>
 
       <div class="portfolio-item">
         <div>
-          <span class="tag">Cybersecurity</span>
-          <div class="item-title">Zero-Trust Cybersecurity in Agent Workflows</div>
-          <div class="item-desc">Keynote on safeguarding agent permissions, secret sanitization, and enterprise data boundaries.</div>
+          <span class="tag">HackerNoon</span>
+          <div class="item-title">Distributed Intelligence & Multi-Agent Systems</div>
+          <div class="item-desc">Why multi-agent systems are the true successor to microservices for enterprise AI workflows.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Tell me about the Zero-Trust Cybersecurity keynote')">Read Summary</button>
+        <button class="btn-action" onclick="sendQuery('Tell me about Harsh Verma\'s article on Distributed Intelligence & Multi-Agent Systems')">Read Summary</button>
+      </div>
+
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">AI Journal</span>
+          <div class="item-title">Human-AI Collaboration in High-Stakes Environments</div>
+          <div class="item-desc">How autonomous AI agents collaborate with human domain experts in mission-critical applications.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Explain Harsh Verma\'s research on Human-AI Collaboration')">Read Summary</button>
+      </div>
+
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Forbes Tech</span>
+          <div class="item-title">Personalized AI: Personalization vs Privacy</div>
+          <div class="item-desc">Evaluating the hidden trade-offs behind smarter AI models and data privacy bounds.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Summarize Harsh Verma\'s article on Personalization vs Privacy in AI')">Read Summary</button>
       </div>
     </div>
 
-    <!-- Specialty Coffee & Precision Extraction -->
+    <!-- BrewCraft Specialty Coffee & IoT Extraction Guide -->
     <div class="section-heading">
-      <span class="material-symbols-outlined">coffee</span> Specialty Coffee Beans & IoT Brew Guide
+      <span class="material-symbols-outlined">coffee</span> BrewCraft Specialty Coffee & Precision Extraction
     </div>
     <div class="grid-2">
       <div class="portfolio-item">
         <div>
-          <span class="tag">Single Origin</span>
+          <span class="tag">Single Origin Light Roast</span>
           <div class="item-title">Ethiopia Yirgacheffe Worka ($22.00)</div>
-          <div class="item-desc">Light Roast • Jasmine, bergamot, blueberry, bright acidity.</div>
+          <div class="item-desc">Jasmine, bergamot, blueberry notes. Precision IoT extraction recipe calculator included.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Calculate a V60 pour over recipe for 22g of Ethiopia Yirgacheffe')">Calculate Brew Recipe</button>
+        <button class="btn-action" onclick="sendQuery('Calculate a V60 pour over recipe for 22g of Ethiopia Yirgacheffe')">Calculate Recipe</button>
       </div>
 
       <div class="portfolio-item">
         <div>
-          <span class="tag">Peaberry</span>
+          <span class="tag">Rare Peaberry Roast</span>
           <div class="item-title">Kenya Nyeri AA Peaberry ($24.50)</div>
-          <div class="item-desc">Light Roast • Black currant, juicy tomato, cane sugar.</div>
+          <div class="item-desc">Black currant, juicy tomato, cane sugar notes with bright wine-like acidity.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Show details for Kenya Nyeri AA Peaberry coffee')">View Details</button>
+        <button class="btn-action" onclick="sendQuery('Calculate a Chemex brew recipe for Kenya Nyeri AA Peaberry')">Calculate Recipe</button>
       </div>
     </div>
 
-    <!-- Services & Consulting Offerings -->
+    <!-- Advisory, Consulting & Mentorship -->
     <div class="section-heading">
-      <span class="material-symbols-outlined">stars</span> Advisory & Consultations
+      <span class="material-symbols-outlined">groups</span> Advisory, Mentorship & Bookings
     </div>
     <div class="grid-2">
       <div class="portfolio-item">
         <div>
-          <span class="tag">Strategy</span>
-          <div class="item-title">1-on-1 AI Strategy Session ($350)</div>
-          <div class="item-desc">60-minute deep dive on designing autonomous agent workflows and memory architecture.</div>
+          <span class="tag">Strategy Consultation</span>
+          <div class="item-title">1-on-1 AI Architecture Session ($350)</div>
+          <div class="item-desc">60-minute deep dive on multi-agent orchestration, Vertex AI Memory Bank, and ADK deployment.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Help me book a 1-on-1 AI strategy session')">Book Session</button>
+        <button class="btn-action" onclick="sendQuery('I want to book a 1-on-1 AI architecture session with Harsh Verma')">Book Consultation</button>
       </div>
 
       <div class="portfolio-item">
         <div>
-          <span class="tag">Enterprise</span>
-          <div class="item-title">Enterprise Cybersecurity Audit ($2,500)</div>
-          <div class="item-desc">Comprehensive evaluation of enterprise agent security and authorization.</div>
+          <span class="tag">Enterprise Audit</span>
+          <div class="item-title">Zero-Trust Cybersecurity Audit ($2,500)</div>
+          <div class="item-desc">Comprehensive audit evaluating enterprise agent permissions, secret boundaries, and safety.</div>
         </div>
-        <button class="btn-action" onclick="sendQuery('Request details on Enterprise Cybersecurity Audit')">Request Audit</button>
+        <button class="btn-action" onclick="sendQuery('Request details on Enterprise Zero-Trust Cybersecurity Audit')">Request Audit</button>
       </div>
     </div>
   </div>
 
-  <!-- Right Column: Interactive Embedded Agent Chat Console -->
+  <!-- Right Column: Interactive BrewCraft AI Assistant Panel -->
   <div>
     <div class="chat-widget">
       <div class="chat-header">
@@ -564,18 +683,18 @@
       <div class="chat-log" id="log">
         <div class="msg agent">
           <div class="bubble">
-👋 Hello! I am BrewCraft, Harsh Verma's AI portfolio concierge. Ask me about AI security blogs, pour-over brew recipes, consulting packages, or ask me to generate custom visuals!
+👋 Welcome to Harsh Verma's AI Web Portal! I am BrewCraft, Harsh's AI concierge. Ask me about his Forbes articles, IEEE research, AI security advisory, coffee recipes, or ask me to generate custom visuals and videos!
           </div>
         </div>
       </div>
 
       <!-- Quick Prompt Pills -->
       <div class="quick-prompts">
-        <button class="prompt-pill" onclick="sendQuery('☕ Calculate V60 recipe for 20g coffee')">☕ V60 Recipe</button>
-        <button class="prompt-pill" onclick="sendQuery('📚 Show AI security blogs')">📚 AI Blogs</button>
-        <button class="prompt-pill" onclick="sendQuery('💼 Help me book an AI strategy session')">💼 Book 1:1</button>
+        <button class="prompt-pill" onclick="sendQuery('📚 Show Harsh Verma\'s Forbes & HackerNoon articles')">📚 Forbes Articles</button>
+        <button class="prompt-pill" onclick="sendQuery('☕ Calculate V60 recipe for Ethiopia Yirgacheffe')">☕ Brew Recipe</button>
+        <button class="prompt-pill" onclick="sendQuery('💼 Help me book an AI strategy session')">💼 Book 1:1 Session</button>
         <button class="prompt-pill" onclick="sendQuery('🎨 Generate a visual for an AI coffee lab')">🎨 Generate Image</button>
-        <button class="prompt-pill" onclick="sendQuery('🎥 Generate a video of coffee roasting')">🎥 Generate Video</button>
+        <button class="prompt-pill" onclick="sendQuery('🎥 Generate a short video demo')">🎥 Generate Video</button>
       </div>
 
       <!-- Form Input -->
@@ -591,7 +710,7 @@
 </div>
 
 <footer>
-  <p>© 2026 BrewCraft Intelligence • Built with Google Agent Development Kit (ADK), Vertex AI Memory Bank, & Cloud Run</p>
+  <p>© 2026 Harsh Verma • Silicon Valley • Built with Google Agent Development Kit (ADK), Vertex AI Memory Bank, & Cloud Run</p>
 </footer>
 
 <script>
@@ -633,7 +752,6 @@ function bubble(who) {
   return b;
 }
 
-// Helper: Bind string value
 function boundStr(v) {
   if (v == null) return "";
   if (typeof v === "string") return v;
@@ -759,7 +877,7 @@ async function sendQuery(text) {
   if (!text) return;
   bubble("user").textContent = text;
   const b = bubble("agent");
-  b.textContent = "… BrewCraft is thinking";
+  b.textContent = "… BrewCraft AI is thinking";
 
   try {
     const res = await fetch("/chat", {
