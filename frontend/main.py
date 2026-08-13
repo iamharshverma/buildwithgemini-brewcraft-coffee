@@ -42,7 +42,7 @@ from a2a.types import (
     TransportProtocol,
 )
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
 RESOURCE = os.environ["AGENT_ENGINE_RESOURCE_NAME"]
@@ -191,6 +191,43 @@ async def chat(req: Request):
 
 
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+
+
+def _no_cache_response(filepath: str) -> FileResponse:
+    resp = FileResponse(filepath)
+    resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    resp.headers["Pragma"] = "no-cache"
+    resp.headers["Expires"] = "0"
+    return resp
+
+
+@app.get("/")
+async def root():
+    return _no_cache_response(os.path.join(static_dir, "index.html"))
+
+
+@app.get("/about")
+@app.get("/about-us")
+async def about_page():
+    return _no_cache_response(os.path.join(static_dir, "about.html"))
+
+
+@app.get("/thought-leadership")
+@app.get("/leadership")
+async def leadership_page():
+    return _no_cache_response(os.path.join(static_dir, "leadership.html"))
+
+
+@app.get("/brewcraft")
+async def brewcraft_page():
+    return _no_cache_response(os.path.join(static_dir, "brewcraft.html"))
+
+
+@app.get("/bookings")
+async def bookings_page():
+    return _no_cache_response(os.path.join(static_dir, "bookings.html"))
+
+
 app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 

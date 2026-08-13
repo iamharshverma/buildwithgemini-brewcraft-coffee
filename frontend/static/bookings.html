@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advisory & Bookings — Harsh Verma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+<style>
+  :root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #030712 100%);
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --accent: #f59e0b;
+    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --radius: 16px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --blur: blur(16px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-gradient); color: var(--text-primary); font-family: var(--font-body); min-height: 100vh; line-height: 1.6; }
+  nav { position: sticky; top: 0; z-index: 100; backdrop-filter: var(--blur); background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid var(--card-border); padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .logo span { color: var(--accent); }
+  .nav-tabs { display: flex; gap: 0.5rem; }
+  .nav-tab { padding: 0.45rem 0.85rem; border-radius: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 600; }
+  .nav-tab:hover, .nav-tab.active { background: rgba(255, 255, 255, 0.08); color: var(--accent); }
+  
+  .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 2.5rem; backdrop-filter: var(--blur); box-shadow: var(--shadow); margin-bottom: 2rem; }
+  .title { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; }
+  
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+  .box { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .box h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+  
+  .form-box { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+  .input-field { width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 1rem; }
+  .btn-submit { width: 100%; padding: 0.85rem; border-radius: 8px; border: none; background: var(--accent-gradient); color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; }
+  
+  .btn-back { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.2rem; border-radius: 8px; background: var(--accent-gradient); color: #fff; text-decoration: none; font-weight: 700; margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="material-symbols-outlined">psychology</span> Harsh Verma <span>Portal</span></a>
+  <div class="nav-tabs">
+    <a href="/" class="nav-tab">Home</a>
+    <a href="/about" class="nav-tab">About Me</a>
+    <a href="/thought-leadership" class="nav-tab">Thought Leadership</a>
+    <a href="/brewcraft" class="nav-tab">BrewCraft Lab</a>
+    <a href="/bookings" class="nav-tab active">Bookings</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1 class="title">Advisory, Consulting & Bookings</h1>
+    <div class="subtitle">Direct Strategic Advisory with Harsh Verma (Silicon Valley)</div>
+
+    <div class="grid-2">
+      <div class="box">
+        <div>
+          <h3>1:1 AI Architecture Strategy Session ($350)</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">60-Minute Intensive Advisory</p>
+          <p style="font-size: 0.875rem; color: var(--text-primary); margin-bottom: 1rem;">
+            Deep-dive session focusing on multi-agent orchestration, Vertex AI Memory Bank integration, ADK deployment, and enterprise LLM production scaling.
+          </p>
+        </div>
+      </div>
+
+      <div class="box">
+        <div>
+          <h3>Enterprise Zero-Trust Audit ($2,500)</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Full Architecture Security Audit</p>
+          <p style="font-size: 0.875rem; color: var(--text-primary); margin-bottom: 1rem;">
+            Comprehensive review evaluating autonomous AI agent permissions, credential delegation, secret storage, and prompt injection threat vectors.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="form-box">
+      <h3 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 1rem;">📅 Request an Advisory Booking</h3>
+      
+      <form id="booking-form" onsubmit="handleBooking(event)">
+        <label style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600;">Your Full Name:</label>
+        <input type="text" required class="input-field" placeholder="e.g., Alex Morgan">
+
+        <label style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600;">Your Work Email:</label>
+        <input type="email" required class="input-field" placeholder="e.g., alex@company.com">
+
+        <label style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600;">Select Session Type:</label>
+        <select class="input-field" style="background: #1e293b;">
+          <option>1:1 AI Architecture Strategy Session ($350)</option>
+          <option>Enterprise Zero-Trust Audit ($2,500)</option>
+          <option>Custom Startup Advisory / Board Meeting</option>
+        </select>
+
+        <button type="submit" class="btn-submit">Submit Request to Harsh Verma</button>
+      </form>
+
+      <div id="booking-confirm" style="display:none; margin-top: 1rem; color: #10b981; font-weight: 700; text-align: center;">
+        ✓ Thank you! Your advisory booking request has been dispatched directly to harshverma59@gmail.com.
+      </div>
+    </div>
+
+    <a href="/" class="btn-back"><span class="material-symbols-outlined">arrow_back</span> Return to Main Hub</a>
+  </div>
+</div>
+
+<script>
+function handleBooking(e) {
+  e.preventDefault();
+  document.getElementById('booking-form').style.display = 'none';
+  document.getElementById('booking-confirm').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrewCraft Coffee & AI Precision Lab — Harsh Verma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+<style>
+  :root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #030712 100%);
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --accent: #f59e0b;
+    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --radius: 16px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --blur: blur(16px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-gradient); color: var(--text-primary); font-family: var(--font-body); min-height: 100vh; line-height: 1.6; }
+  nav { position: sticky; top: 0; z-index: 100; backdrop-filter: var(--blur); background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid var(--card-border); padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .logo span { color: var(--accent); }
+  .nav-tabs { display: flex; gap: 0.5rem; }
+  .nav-tab { padding: 0.45rem 0.85rem; border-radius: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 600; }
+  .nav-tab:hover, .nav-tab.active { background: rgba(255, 255, 255, 0.08); color: var(--accent); }
+  
+  .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 2.5rem; backdrop-filter: var(--blur); box-shadow: var(--shadow); margin-bottom: 2rem; }
+  .title { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; }
+  
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+  .box { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; }
+  .box h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+  
+  .calc-box { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+  .input-field { width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 1rem; margin-top: 0.5rem; margin-bottom: 1rem; }
+  .btn-calc { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; background: var(--accent-gradient); color: #fff; font-weight: 700; cursor: pointer; }
+  
+  .btn-back { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.2rem; border-radius: 8px; background: var(--accent-gradient); color: #fff; text-decoration: none; font-weight: 700; margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="material-symbols-outlined">psychology</span> Harsh Verma <span>Portal</span></a>
+  <div class="nav-tabs">
+    <a href="/" class="nav-tab">Home</a>
+    <a href="/about" class="nav-tab">About Me</a>
+    <a href="/thought-leadership" class="nav-tab">Thought Leadership</a>
+    <a href="/brewcraft" class="nav-tab active">BrewCraft Lab</a>
+    <a href="/bookings" class="nav-tab">Bookings</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1 class="title">BrewCraft Specialty Coffee & AI Precision Lab</h1>
+    <div class="subtitle">Merging Single-Origin Craft Coffee with IoT Extraction Analytics</div>
+
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+      BrewCraft combines Harsh Verma's passion for specialty coffee extraction with real-time IoT water temperature telemetry, grind distribution calculations, and AI-driven recipe generation.
+    </p>
+
+    <div class="grid-2">
+      <div class="box">
+        <h3>Ethiopia Yirgacheffe Worka ($22.00)</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.8rem;">Light Roast • Washed Process • Altitude 2,000m</p>
+        <p style="font-size: 0.875rem; color: var(--text-primary);">Tasting Notes: Floral Jasmine, Bergamot, Blueberry, & Lemongrass. Recommended ratio: 1:16 at 93°C.</p>
+      </div>
+
+      <div class="box">
+        <h3>Kenya Nyeri AA Peaberry ($24.50)</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.8rem;">Peaberry Roast • Double Washed • Altitude 1,800m</p>
+        <p style="font-size: 0.875rem; color: var(--text-primary);">Tasting Notes: Black Currant, Juicy Tomato, Cane Sugar, Wine-like Acidity. Recommended ratio: 1:15 at 94°C.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Brew Calculator -->
+    <div class="calc-box">
+      <h3 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.5rem;">☕ Interactive Brew Calculator</h3>
+      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">Enter your dose in grams to calculate total water weight and bloom water volume:</p>
+      
+      <label style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600;">Coffee Dose (Grams):</label>
+      <input type="number" id="dose" value="20" class="input-field" min="10" max="60">
+      
+      <button class="btn-calc" onclick="calculate()">Calculate Water & Pour Steps</button>
+
+      <div id="calc-result" style="margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.6; color: #fff; background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; display: none;"></div>
+    </div>
+
+    <a href="/" class="btn-back"><span class="material-symbols-outlined">arrow_back</span> Return to Main Hub</a>
+  </div>
+</div>
+
+<script>
+function calculate() {
+  const dose = parseFloat(document.getElementById('dose').value) || 20;
+  const totalWater = dose * 16;
+  const bloomWater = dose * 3;
+  const mainPour = totalWater - bloomWater;
+
+  const resultDiv = document.getElementById('calc-result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `
+    <strong>Precision V60 Pour-Over Recipe (${dose}g Dose):</strong><br>
+    • <strong>Total Water Weight:</strong> ${totalWater}g (1:16 Ratio at 93°C)<br>
+    • <strong>Bloom Stage (0:00 - 0:45):</strong> Pour ${bloomWater}g water, swirl gently.<br>
+    • <strong>Main Pour Stage (0:45 - 2:30):</strong> Pour remaining ${mainPour}g water in steady spiral pours.<br>
+    • <strong>Expected Drawdown Time:</strong> 3:00 - 3:15 total time.
+  `;
+}
+</script>
+
+</body>
+</html>
