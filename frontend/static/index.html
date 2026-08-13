@@ -1,75 +1,639 @@
-can you<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent</title>
-<!-- Optional: used only to draw A2UI Icon components. If it can't load (offline/
-     corp network), icons fall back to showing their name as text. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-<style>
-  :root { --accent:#1a73e8; --bg:#f6f8fa; --border:#dfe3e8; }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:system-ui,sans-serif; background:var(--bg); display:flex; flex-direction:column; height:100vh; }
-  header { background:var(--accent); color:#fff; padding:.9rem 1.2rem; font-weight:700; }
-  #log { flex:1; overflow-y:auto; padding:1.2rem; max-width:780px; width:100%; margin:0 auto; }
-  .msg { margin:.6rem 0; }
-  .msg.user { text-align:right; }
-  .bubble { display:inline-block; padding:.6rem .9rem; border-radius:12px; background:#fff; border:1px solid var(--border); text-align:left; max-width:90%; white-space:pre-wrap; }
-  .msg.user .bubble { background:var(--accent); color:#fff; border:none; }
-  /* When the reply is an A2UI card, drop the bubble chrome so the card stands alone. */
-  .bubble.rich { background:transparent; border:none; padding:0; max-width:100%; white-space:normal; }
-  form { display:flex; gap:.5rem; padding:1rem; border-top:1px solid var(--border); background:#fff; }
-  input { flex:1; padding:.7rem; border:1px solid var(--border); border-radius:8px; font-size:1rem; }
-  button { padding:.7rem 1.1rem; border:none; border-radius:8px; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; }
+<title>BrewCraft — Harsh Verma Portfolio Concierge & AI Guide</title>
 
-  /* --- A2UI component styles (Card, Column, Row, Text, Divider, List, Image, Icon) --- */
-  .a2card { border:1px solid var(--border); border-radius:12px; padding:1rem; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.06); max-width:100%; }
-  .a2card + .a2card, .a2col > .a2card { margin-top:.6rem; }
-  .a2col { display:flex; flex-direction:column; gap:.4rem; }
-  .a2row { display:flex; flex-direction:row; gap:.6rem; align-items:center; flex-wrap:wrap; }
-  .a2row.between { justify-content:space-between; }
-  .a2text { margin:0; line-height:1.4; }
-  .a2text.a2-h1 { font-size:1.5rem; font-weight:700; }
-  .a2text.a2-h2 { font-size:1.25rem; font-weight:700; }
-  .a2text.a2-h3 { font-size:1.1rem; font-weight:600; }
-  .a2text.a2-h4 { font-size:1rem; font-weight:600; }
-  .a2text.a2-caption { font-size:.85rem; color:#666; }
-  .a2divider { border:none; border-top:1px solid var(--border); margin:.4rem 0; width:100%; }
-  .a2img { max-width:100%; border-radius:8px; display:block; }
-  .material-symbols-outlined { font-family:'Material Symbols Outlined'; font-size:1.25rem; line-height:1; vertical-align:middle; color:var(--accent); }
+<!-- Modern Typography from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+<style>
+  /* --- Global Design Tokens & Theme Variables --- */
+  :root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Default Theme: Sleek Dark Artisan */
+    --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 50%, #080c14 100%);
+    --card-bg: rgba(17, 24, 39, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-hover-border: rgba(245, 158, 11, 0.5);
+    --accent: #f59e0b;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --chat-bg: rgba(15, 23, 42, 0.85);
+    --user-msg-bg: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    --agent-msg-bg: rgba(30, 41, 59, 0.8);
+    --radius: 16px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --blur: blur(16px);
+  }
+
+  /* Glassmorphism Tech Hub Theme */
+  body.theme-glassmorphism {
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 100%);
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-border: rgba(6, 182, 212, 0.25);
+    --card-hover-border: rgba(6, 182, 212, 0.7);
+    --accent: #06b6d4;
+    --accent-glow: rgba(6, 182, 212, 0.3);
+    --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --chat-bg: rgba(15, 23, 42, 0.9);
+    --user-msg-bg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    --agent-msg-bg: rgba(30, 41, 59, 0.85);
+  }
+
+  /* Neo-Brutalist Dashboard Theme */
+  body.theme-brutalist {
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --bg-gradient: #f4f4f5;
+    --card-bg: #ffffff;
+    --card-border: #18181b;
+    --card-hover-border: #f43f5e;
+    --accent: #f43f5e;
+    --accent-glow: rgba(244, 63, 94, 0.2);
+    --accent-gradient: #f43f5e;
+    --text-primary: #09090b;
+    --text-secondary: #52525b;
+    --chat-bg: #ffffff;
+    --user-msg-bg: #18181b;
+    --agent-msg-bg: #f4f4f5;
+    --radius: 8px;
+    --shadow: 4px 4px 0px #18181b;
+    --blur: none;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  /* --- Navigation & Header --- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    background: rgba(15, 23, 42, 0.7);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  .logo span { color: var(--accent); }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    font-size: 0.825rem;
+    font-weight: 600;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+  }
+  .theme-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .theme-btn.active, .theme-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 10px var(--accent-glow);
+  }
+
+  /* --- Container & Layout --- */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 2.5rem;
+  }
+  @media (max-width: 1024px) {
+    .container { grid-template-columns: 1fr; }
+  }
+
+  /* --- Hero Section --- */
+  .hero-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: var(--accent-glow);
+    filter: blur(80px);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
+  .hero-banner-img {
+    width: 100%;
+    border-radius: calc(var(--radius) - 4px);
+    border: 1px solid var(--card-border);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  /* --- Grid Cards (Blogs, Coffee, Services) --- */
+  .section-heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .portfolio-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    backdrop-filter: var(--blur);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .portfolio-item:hover {
+    border-color: var(--card-hover-border);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px var(--accent-glow);
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .item-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+  .item-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-action:hover { opacity: 0.9; }
+
+  /* --- Agent Chat Widget Panel --- */
+  .chat-widget {
+    background: var(--chat-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    position: sticky;
+    top: 90px;
+    overflow: hidden;
+  }
+  .chat-header {
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .chat-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Quick Prompt Pills */
+  .quick-prompts {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--card-border);
+    background: rgba(15, 23, 42, 0.4);
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .prompt-pill {
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    font-size: 0.775rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .prompt-pill:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* Chat Input Form */
+  .chat-form {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid var(--card-border);
+    background: rgba(15, 23, 42, 0.8);
+  }
+  .chat-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .chat-input:focus { border-color: var(--accent); }
+  .chat-submit {
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Messages */
+  .msg { display: flex; flex-direction: column; max-width: 90%; }
+  .msg.user { align-self: flex-end; }
+  .msg.agent { align-self: flex-start; }
+  .bubble {
+    padding: 0.8rem 1.1rem;
+    border-radius: 14px;
+    background: var(--agent-msg-bg);
+    border: 1px solid var(--card-border);
+    font-size: 0.925rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .msg.user .bubble {
+    background: var(--user-msg-bg);
+    color: #fff;
+    border: none;
+  }
+  .bubble.rich { background: transparent; border: none; padding: 0; max-width: 100%; white-space: normal; }
+
+  /* --- A2UI Component Render Rules --- */
+  .a2card { border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem; background: var(--card-bg); backdrop-filter: var(--blur); box-shadow: var(--shadow); }
+  .a2card + .a2card, .a2col > .a2card { margin-top: 0.6rem; }
+  .a2col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .a2row { display: flex; flex-direction: row; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .a2row.between { justify-content: space-between; }
+  .a2text { margin: 0; line-height: 1.4; color: var(--text-primary); }
+  .a2text.a2-h1 { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+  .a2text.a2-h2 { font-size: 1.2rem; font-weight: 700; }
+  .a2text.a2-h3 { font-size: 1.05rem; font-weight: 600; color: var(--accent); }
+  .a2text.a2-caption { font-size: 0.8rem; color: var(--text-secondary); }
+  .a2divider { border: none; border-top: 1px solid var(--card-border); margin: 0.5rem 0; }
+  .a2img { max-width: 100%; border-radius: 8px; display: block; border: 1px solid var(--card-border); }
+  .material-symbols-outlined { font-size: 1.25rem; vertical-align: middle; color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--card-border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 4rem;
+  }
 </style>
 </head>
-<body>
-<header>Your Agent</header>
-<div id="log"></div>
-<form id="form">
-  <input id="input" placeholder="Ask something…" autocomplete="off" autofocus>
-  <button>Send</button>
-</form>
+<body class="theme-artisan">
+
+<!-- Top Navigation -->
+<nav>
+  <div class="logo">
+    <span class="material-symbols-outlined">coffee_maker</span>
+    BrewCraft <span>Concierge</span>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <div class="status-badge">
+      <div class="status-dot"></div> Memory Bank Active
+    </div>
+
+    <!-- UI Template Switcher -->
+    <div class="theme-switcher">
+      <button class="theme-btn active" onclick="setTheme('artisan')">✨ Artisan</button>
+      <button class="theme-btn" onclick="setTheme('glassmorphism')">💎 Glass</button>
+      <button class="theme-btn" onclick="setTheme('brutalist')">⚡ Brutalist</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Portfolio Layout -->
+<div class="container">
+  
+  <!-- Left Column: Portfolio Content -->
+  <div>
+    <!-- Hero Banner -->
+    <div class="hero-card">
+      <h1 class="hero-title">Harsh Verma</h1>
+      <p class="hero-subtitle">
+        AI & Agentic Systems Architect • Founder of BrewCraft Intelligence • Cybersecurity Advisory
+      </p>
+      <img src="/hero.png" alt="BrewCraft AI Banner" class="hero-banner-img">
+      <p style="font-size: 0.95rem; color: var(--text-secondary);">
+        Welcome to my interactive portfolio concierge! Ask BrewCraft AI to explore my AI security blogs, research keynotes, specialty coffee roasting guide, or book a 1-on-1 architecture consultation.
+      </p>
+    </div>
+
+    <!-- Featured Blogs & Keynotes -->
+    <div class="section-heading">
+      <span class="material-symbols-outlined">article</span> Technical Blogs & Keynotes
+    </div>
+    <div class="grid-2">
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Agentic AI</span>
+          <div class="item-title">Architecting Autonomous Agentic Systems with Gemini ADK</div>
+          <div class="item-desc">Multi-agent orchestration, function calling, and Vertex AI Memory Bank integration.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Tell me about the Autonomous Agentic Systems blog')">Read Summary</button>
+      </div>
+
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Cybersecurity</span>
+          <div class="item-title">Zero-Trust Cybersecurity in Agent Workflows</div>
+          <div class="item-desc">Keynote on safeguarding agent permissions, secret sanitization, and enterprise data boundaries.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Tell me about the Zero-Trust Cybersecurity keynote')">Read Summary</button>
+      </div>
+    </div>
+
+    <!-- Specialty Coffee & Precision Extraction -->
+    <div class="section-heading">
+      <span class="material-symbols-outlined">coffee</span> Specialty Coffee Beans & IoT Brew Guide
+    </div>
+    <div class="grid-2">
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Single Origin</span>
+          <div class="item-title">Ethiopia Yirgacheffe Worka ($22.00)</div>
+          <div class="item-desc">Light Roast • Jasmine, bergamot, blueberry, bright acidity.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Calculate a V60 pour over recipe for 22g of Ethiopia Yirgacheffe')">Calculate Brew Recipe</button>
+      </div>
+
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Peaberry</span>
+          <div class="item-title">Kenya Nyeri AA Peaberry ($24.50)</div>
+          <div class="item-desc">Light Roast • Black currant, juicy tomato, cane sugar.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Show details for Kenya Nyeri AA Peaberry coffee')">View Details</button>
+      </div>
+    </div>
+
+    <!-- Services & Consulting Offerings -->
+    <div class="section-heading">
+      <span class="material-symbols-outlined">stars</span> Advisory & Consultations
+    </div>
+    <div class="grid-2">
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Strategy</span>
+          <div class="item-title">1-on-1 AI Strategy Session ($350)</div>
+          <div class="item-desc">60-minute deep dive on designing autonomous agent workflows and memory architecture.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Help me book a 1-on-1 AI strategy session')">Book Session</button>
+      </div>
+
+      <div class="portfolio-item">
+        <div>
+          <span class="tag">Enterprise</span>
+          <div class="item-title">Enterprise Cybersecurity Audit ($2,500)</div>
+          <div class="item-desc">Comprehensive evaluation of enterprise agent security and authorization.</div>
+        </div>
+        <button class="btn-action" onclick="sendQuery('Request details on Enterprise Cybersecurity Audit')">Request Audit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Interactive Embedded Agent Chat Console -->
+  <div>
+    <div class="chat-widget">
+      <div class="chat-header">
+        <div class="chat-title">
+          <span class="material-symbols-outlined">smart_toy</span> BrewCraft AI Concierge
+        </div>
+        <span style="font-size: 0.75rem; color: var(--text-secondary);">A2UI Enabled</span>
+      </div>
+
+      <!-- Live Chat Messages Log -->
+      <div class="chat-log" id="log">
+        <div class="msg agent">
+          <div class="bubble">
+👋 Hello! I am BrewCraft, Harsh Verma's AI portfolio concierge. Ask me about AI security blogs, pour-over brew recipes, consulting packages, or ask me to generate custom visuals!
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Prompt Pills -->
+      <div class="quick-prompts">
+        <button class="prompt-pill" onclick="sendQuery('☕ Calculate V60 recipe for 20g coffee')">☕ V60 Recipe</button>
+        <button class="prompt-pill" onclick="sendQuery('📚 Show AI security blogs')">📚 AI Blogs</button>
+        <button class="prompt-pill" onclick="sendQuery('💼 Help me book an AI strategy session')">💼 Book 1:1</button>
+        <button class="prompt-pill" onclick="sendQuery('🎨 Generate a visual for an AI coffee lab')">🎨 Generate Image</button>
+        <button class="prompt-pill" onclick="sendQuery('🎥 Generate a video of coffee roasting')">🎥 Generate Video</button>
+      </div>
+
+      <!-- Form Input -->
+      <form class="chat-form" id="form">
+        <input class="chat-input" id="input" placeholder="Ask BrewCraft AI…" autocomplete="off">
+        <button class="chat-submit" type="submit">
+          <span>Send</span> <span class="material-symbols-outlined" style="font-size: 1.1rem; color: #fff;">send</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 BrewCraft Intelligence • Built with Google Agent Development Kit (ADK), Vertex AI Memory Bank, & Cloud Run</p>
+</footer>
 
 <script>
+// Theme Switcher Logic
+function setTheme(theme) {
+  document.body.className = '';
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  
+  if (theme === 'glassmorphism') {
+    document.body.classList.add('theme-glassmorphism');
+    event.target.classList.add('active');
+  } else if (theme === 'brutalist') {
+    document.body.classList.add('theme-brutalist');
+    event.target.classList.add('active');
+  } else {
+    document.body.classList.add('theme-artisan');
+    event.target.classList.add('active');
+  }
+}
+
+// Chat Elements
 const log = document.getElementById("log");
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 
-function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
 
 function bubble(who) {
   const m = el("div", "msg " + who);
   const b = el("div", "bubble");
-  m.appendChild(b); log.appendChild(m); log.scrollTop = log.scrollHeight;
+  m.appendChild(b);
+  log.appendChild(m);
+  log.scrollTop = log.scrollHeight;
   return b;
 }
 
-/* ----------------------------------------------------------------------------
- * A2UI mini-renderer (v0.8 Basic Catalog subset).
- * Renders Card / Column / Row / Text / Divider / List / Image / Icon.
- * Anything else falls back to plain text (see renderReply). All text goes in via
- * textContent and image URLs are validated, so agent output can't inject HTML.
- * -------------------------------------------------------------------------- */
-
-// A "bound value" is usually {literalString: "..."}; we only support literals.
+// Helper: Bind string value
 function boundStr(v) {
   if (v == null) return "";
   if (typeof v === "string") return v;
@@ -77,20 +641,23 @@ function boundStr(v) {
   return "";
 }
 
-// child ids of a component's props: single `child` and/or `children.explicitList`.
 function childIds(props) {
   const ids = [];
   if (props && typeof props.child === "string") ids.push(props.child);
   const ch = props && props.children;
-  if (ch && Array.isArray(ch.explicitList)) for (const c of ch.explicitList) if (typeof c === "string") ids.push(c);
+  if (ch && Array.isArray(ch.explicitList)) {
+    for (const c of ch.explicitList) if (typeof c === "string") ids.push(c);
+  }
   return ids;
 }
 
-// A2UI icon names are camelCase (locationOn); Material Symbols wants snake_case.
-function iconName(n) { return String(n || "").replace(/([a-z0-9])([A-Z])/g, "$1_$2").replace(/\s+/g, "_").toLowerCase(); }
+function iconName(n) {
+  return String(n || "").replace(/([a-z0-9])([A-Z])/g, "$1_$2").replace(/\s+/g, "_").toLowerCase();
+}
 
+// A2UI Component Renderer
 function buildNode(id, comps, seen) {
-  if (!id || seen.has(id)) return null;   // missing / cycle guard
+  if (!id || seen.has(id)) return null;
   seen.add(id);
   const spec = comps[id];
   if (!spec || typeof spec !== "object") return null;
@@ -123,50 +690,57 @@ function buildNode(id, comps, seen) {
       return el("hr", "a2divider");
     case "Image": {
       const src = boundStr(props.url || props.src);
-      if (!/^https?:\/\//i.test(src)) return null;   // only allow safe URLs
+      if (!/^https?:\/\//i.test(src)) return null;
       const img = el("img", "a2img"); img.src = src; img.alt = boundStr(props.alt) || ""; return img;
     }
     case "Icon": {
       const s = el("span", "material-symbols-outlined"); s.textContent = iconName(boundStr(props.name) || props.name); return s;
     }
     default:
-      return null;   // unknown component -> skipped (text fallback covers content)
+      return null;
   }
 }
 
-// Render one or more A2UI messages (beginRendering + surfaceUpdate) into `container`.
-// Returns true if anything was drawn.
 function renderSurface(messages, container) {
   const comps = {};
   const roots = [];
   for (const m of messages) {
     if (m.beginRendering && typeof m.beginRendering.root === "string") roots.push(m.beginRendering.root);
     const su = m.surfaceUpdate;
-    if (su && Array.isArray(su.components)) for (const c of su.components) if (c && c.id && c.component) comps[c.id] = c.component;
+    if (su && Array.isArray(su.components)) {
+      for (const c of su.components) if (c && c.id && c.component) comps[c.id] = c.component;
+    }
   }
   let rootIds = roots.filter(r => comps[r]);
-  if (rootIds.length === 0) {   // no valid root given -> infer un-referenced components
+  if (rootIds.length === 0) {
     const referenced = new Set();
-    for (const id in comps) { const spec = comps[id]; childIds(spec[Object.keys(spec)[0]] || {}).forEach(c => referenced.add(c)); }
+    for (const id in comps) {
+      const spec = comps[id];
+      childIds(spec[Object.keys(spec)[0]] || {}).forEach(c => referenced.add(c));
+    }
     rootIds = Object.keys(comps).filter(id => !referenced.has(id));
   }
   let drew = false;
-  for (const rid of rootIds) { const node = buildNode(rid, comps, new Set()); if (node) { container.appendChild(node); drew = true; } }
+  for (const rid of rootIds) {
+    const node = buildNode(rid, comps, new Set());
+    if (node) { container.appendChild(node); drew = true; }
+  }
   return drew;
 }
 
-// Fallback: pull every Text value out of the messages as plain text.
 function flattenText(messages) {
   const out = [];
   for (const m of messages) {
     const su = m.surfaceUpdate;
-    if (su && Array.isArray(su.components)) for (const c of su.components) if (c && c.component && c.component.Text) out.push(boundStr(c.component.Text.text));
+    if (su && Array.isArray(su.components)) {
+      for (const c of su.components) if (c && c.component && c.component.Text) out.push(boundStr(c.component.Text.text));
+    }
   }
   return out.join("\n").trim();
 }
 
 function renderReply(b, parts) {
-  b.textContent = "";   // clear the "…" placeholder
+  b.textContent = "";
   const texts = parts.filter(p => p && (p.kind === "text" || (!p.kind && p.text))).map(p => p.text || "");
   const a2ui = parts.filter(p => p && p.kind === "a2ui" && p.data).map(p => p.data);
 
@@ -181,27 +755,34 @@ function renderReply(b, parts) {
   log.scrollTop = log.scrollHeight;
 }
 
-// The proxy returns { parts: [{kind:"text",text} | {kind:"a2ui",data}] }.
-form.addEventListener("submit", async (ev) => {
-  ev.preventDefault();
-  const text = input.value.trim();
+async function sendQuery(text) {
   if (!text) return;
   bubble("user").textContent = text;
-  input.value = "";
-  const b = bubble("agent"); b.textContent = "…";
+  const b = bubble("agent");
+  b.textContent = "… BrewCraft is thinking";
+
   try {
-    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: text }) });
-    // Read as text first, then parse. If the proxy ever returns a non-JSON error
-    // page (e.g. a plain "Internal Server Error"), show that body instead of a
-    // cryptic "Unexpected token" JSON error.
+    const res = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
     const raw = await res.text();
     let data;
     try { data = JSON.parse(raw); }
-    catch { throw new Error(`Server returned non-JSON (HTTP ${res.status}). ${raw.slice(0, 300)}`); }
+    catch { throw new Error(`Server returned non-JSON (HTTP ${res.status}).`); }
     renderReply(b, data.parts || []);
   } catch (e) {
     b.textContent = "Error: " + e.message;
   }
+}
+
+form.addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = "";
+  sendQuery(text);
 });
 </script>
 </body>
