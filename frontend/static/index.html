@@ -3,69 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harsh Verma — Principal AI & Cybersecurity Engineer | BrewCraft Digital Hub</title>
+<title>Harsh Verma — Principal AI & Cybersecurity Engineer | Digital Hub & AI Assistant</title>
 
-<!-- Modern Typography from Google Fonts -->
+<!-- Modern Typography & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 
 <style>
-  /* --- Global Design Tokens & Theme Variables --- */
+  /* --- Design Tokens --- */
   :root {
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     
-    /* Default Theme: Sleek Dark Artisan */
-    --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 50%, #060911 100%);
-    --card-bg: rgba(17, 24, 39, 0.8);
-    --card-border: rgba(255, 255, 255, 0.12);
-    --card-hover-border: rgba(245, 158, 11, 0.6);
+    /* Sleek Dark Theme Default */
+    --bg-color: #080c14;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #030712 100%);
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-hover: rgba(245, 158, 11, 0.5);
     --accent: #f59e0b;
     --accent-glow: rgba(245, 158, 11, 0.25);
     --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     --text-primary: #f9fafb;
     --text-secondary: #9ca3af;
-    --chat-bg: rgba(15, 23, 42, 0.9);
-    --user-msg-bg: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-    --agent-msg-bg: rgba(30, 41, 59, 0.85);
+    --chat-bg: rgba(15, 23, 42, 0.95);
+    --user-msg: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    --agent-msg: rgba(30, 41, 59, 0.9);
     --radius: 16px;
-    --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
     --blur: blur(16px);
   }
 
-  /* Glassmorphism Tech Hub Theme */
   body.theme-glassmorphism {
-    --bg-gradient: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 100%);
-    --card-bg: rgba(15, 23, 42, 0.7);
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0c1a2e 0%, #020617 100%);
+    --card-bg: rgba(15, 23, 42, 0.65);
     --card-border: rgba(6, 182, 212, 0.25);
-    --card-hover-border: rgba(6, 182, 212, 0.8);
+    --card-hover: rgba(6, 182, 212, 0.8);
     --accent: #06b6d4;
-    --accent-glow: rgba(6, 182, 212, 0.35);
+    --accent-glow: rgba(6, 182, 212, 0.3);
     --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
     --chat-bg: rgba(15, 23, 42, 0.95);
-    --user-msg-bg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-    --agent-msg-bg: rgba(30, 41, 59, 0.9);
+    --user-msg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   }
 
-  /* Neo-Brutalist Dashboard Theme */
   body.theme-brutalist {
-    --font-heading: 'Plus Jakarta Sans', sans-serif;
     --bg-gradient: #f4f4f5;
     --card-bg: #ffffff;
     --card-border: #18181b;
-    --card-hover-border: #f43f5e;
+    --card-hover: #f43f5e;
     --accent: #f43f5e;
-    --accent-glow: rgba(244, 63, 94, 0.2);
+    --accent-glow: rgba(244, 63, 94, 0.15);
     --accent-gradient: #f43f5e;
     --text-primary: #09090b;
     --text-secondary: #52525b;
     --chat-bg: #ffffff;
-    --user-msg-bg: #18181b;
-    --agent-msg-bg: #f4f4f5;
+    --user-msg: #18181b;
+    --agent-msg: #f4f4f5;
     --radius: 8px;
     --shadow: 4px 4px 0px #18181b;
     --blur: none;
@@ -79,10 +74,9 @@
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background 0.4s ease, color 0.4s ease;
   }
 
-  /* --- Navigation & Header --- */
+  /* --- Navigation Bar --- */
   nav {
     position: sticky;
     top: 0;
@@ -91,51 +85,58 @@
     -webkit-backdrop-filter: var(--blur);
     background: rgba(15, 23, 42, 0.85);
     border-bottom: 1px solid var(--card-border);
-    padding: 1rem 2rem;
+    padding: 0.85rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
   .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
+    font-size: 1.35rem;
     color: var(--text-primary);
+    text-decoration: none;
   }
   .logo span { color: var(--accent); }
-  
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: #10b981;
-    font-size: 0.825rem;
-    font-weight: 600;
-  }
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 8px #10b981;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+  .nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+  }
+  @media (max-width: 900px) { .nav-tabs { display: none; } }
+  .nav-tab {
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .nav-tab:hover, .nav-tab.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
   .theme-switcher {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
     background: rgba(255, 255, 255, 0.05);
-    padding: 0.3rem 0.5rem;
+    padding: 0.25rem;
     border-radius: 999px;
     border: 1px solid var(--card-border);
   }
@@ -143,205 +144,194 @@
     border: none;
     background: transparent;
     color: var(--text-secondary);
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.7rem;
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 0.775rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
   }
-  .theme-btn.active, .theme-btn:hover {
+  .theme-btn.active {
     background: var(--accent);
     color: #fff;
-    box-shadow: 0 2px 10px var(--accent-glow);
   }
 
-  /* --- Container & Layout --- */
-  .container {
-    max-width: 1320px;
+  /* --- Main Container --- */
+  .layout-grid {
+    max-width: 1360px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
     display: grid;
-    grid-template-columns: 1fr 480px;
-    gap: 2.5rem;
+    grid-template-columns: 1fr 450px;
+    gap: 2rem;
   }
-  @media (max-width: 1024px) {
-    .container { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 1024px) { .layout-grid { grid-template-columns: 1fr; } }
 
-  /* --- Hero Header Profile Card --- */
-  .profile-hero {
+  /* --- Section Wrapper --- */
+  .section-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     border-radius: var(--radius);
-    padding: 2.5rem;
-    box-shadow: var(--shadow);
+    padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  /* --- Hero Banner --- */
+  .hero-banner-box {
     position: relative;
+    border-radius: var(--radius);
     overflow: hidden;
-  }
-  .profile-hero::before {
-    content: '';
-    position: absolute;
-    top: -40%;
-    right: -15%;
-    width: 350px;
-    height: 350px;
-    background: var(--accent-glow);
-    filter: blur(100px);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .profile-header-flex {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
     margin-bottom: 1.5rem;
+    border: 1px solid var(--card-border);
   }
-  @media (max-width: 640px) {
-    .profile-header-flex { flex-direction: column; text-align: center; }
-  }
-  .avatar-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
+  .hero-banner-img {
+    width: 100%;
+    height: 180px;
     object-fit: cover;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
+    display: block;
   }
-  .profile-name {
+  .hero-avatar-overlay {
+    position: absolute;
+    bottom: -30px;
+    left: 2rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #0f172a;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    object-fit: cover;
+  }
+  .hero-details-row {
+    margin-top: 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .hero-name {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 0.4rem;
   }
-  .profile-title-role {
-    font-size: 1.1rem;
+  .hero-title {
+    font-size: 1.05rem;
     color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 0.4rem;
+    font-weight: 700;
   }
-  .profile-location {
-    font-size: 0.9rem;
+  .hero-meta {
+    font-size: 0.875rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
   }
 
-  /* Accolades & Badges Pill Cloud */
-  .badge-cloud {
+  /* Accolade Badges */
+  .badge-container {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 1.25rem;
   }
-  .accolade-badge {
+  .badge {
     padding: 0.35rem 0.75rem;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--card-border);
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-primary);
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
   }
-  .accolade-badge span { color: var(--accent); }
+  .badge span { color: var(--accent); }
 
-  /* Social Link Icons Toolbar */
-  .social-toolbar {
+  /* Social Toolbar */
+  .social-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.6rem;
     margin-top: 1.5rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--card-border);
   }
-  .social-link {
-    padding: 0.5rem 0.9rem;
+  .social-btn {
+    padding: 0.45rem 0.85rem;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    font-size: 0.85rem;
-    font-weight: 600;
     text-decoration: none;
+    font-size: 0.825rem;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
   }
-  .social-link:hover {
+  .social-btn:hover {
     background: var(--accent);
     color: #fff;
-    border-color: var(--accent);
-    transform: translateY(-2px);
   }
 
-  /* --- Section Cards --- */
-  .section-heading {
+  /* --- Section Typography --- */
+  .section-title {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 800;
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
     gap: 0.6rem;
   }
-  .grid-2 {
+
+  /* --- Grid Layouts --- */
+  .card-grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
-    margin-bottom: 2.5rem;
   }
-  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .card-grid-2 { grid-template-columns: 1fr; } }
 
-  .portfolio-item {
-    background: var(--card-bg);
+  .feature-item {
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--card-border);
-    border-radius: var(--radius);
+    border-radius: 12px;
     padding: 1.25rem;
-    backdrop-filter: var(--blur);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: all 0.25s ease;
   }
-  .portfolio-item:hover {
-    border-color: var(--card-hover-border);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px var(--accent-glow);
+  .feature-item:hover {
+    border-color: var(--card-hover);
+    transform: translateY(-2px);
   }
-  .tag {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    background: rgba(245, 158, 11, 0.15);
-    color: var(--accent);
+  .item-tag {
     font-size: 0.75rem;
     font-weight: 700;
+    color: var(--accent);
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
   }
-  .item-title {
+  .item-headline {
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.4rem;
-    color: var(--text-primary);
   }
-  .item-desc {
+  .item-body {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
-    line-height: 1.5;
   }
-  .btn-action {
+
+  .btn-primary-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -351,16 +341,14 @@
     background: var(--accent-gradient);
     color: #fff;
     font-size: 0.825rem;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease;
     text-decoration: none;
   }
-  .btn-action:hover { opacity: 0.9; }
 
-  /* --- Agent Chat Console Widget --- */
-  .chat-widget {
+  /* --- Floating Chat Console --- */
+  .chat-console {
     background: var(--chat-bg);
     border: 1px solid var(--card-border);
     backdrop-filter: var(--blur);
@@ -369,28 +357,28 @@
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    height: 740px;
+    height: 760px;
     position: sticky;
-    top: 90px;
+    top: 85px;
     overflow: hidden;
   }
-  .chat-header {
-    background: rgba(15, 23, 42, 0.85);
+  .chat-console-header {
+    background: rgba(15, 23, 42, 0.9);
     border-bottom: 1px solid var(--card-border);
     padding: 1rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .chat-title {
+  .chat-console-title {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .chat-log {
+  .chat-console-body {
     flex: 1;
     overflow-y: auto;
     padding: 1.25rem;
@@ -398,55 +386,50 @@
     flex-direction: column;
     gap: 1rem;
   }
-  
-  /* Quick Prompt Pills */
-  .quick-prompts {
+
+  .prompt-pills-scroll {
     padding: 0.75rem 1rem;
     border-top: 1px solid var(--card-border);
-    background: rgba(15, 23, 42, 0.4);
+    background: rgba(15, 23, 42, 0.5);
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;
     white-space: nowrap;
   }
-  .prompt-pill {
+  .pill {
     padding: 0.4rem 0.75rem;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
     font-size: 0.775rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
   }
-  .prompt-pill:hover {
+  .pill:hover {
     background: var(--accent);
     color: #fff;
-    border-color: var(--accent);
   }
 
-  /* Chat Input Form */
-  .chat-form {
+  .chat-input-bar {
     display: flex;
     gap: 0.5rem;
     padding: 1rem;
     border-top: 1px solid var(--card-border);
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(15, 23, 42, 0.9);
   }
-  .chat-input {
+  .chat-field {
     flex: 1;
     padding: 0.75rem 1rem;
     border-radius: 10px;
     border: 1px solid var(--card-border);
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     outline: none;
-    transition: border-color 0.2s ease;
   }
-  .chat-input:focus { border-color: var(--accent); }
-  .chat-submit {
+  .chat-field:focus { border-color: var(--accent); }
+  .chat-btn-send {
     padding: 0.75rem 1.25rem;
     border-radius: 10px;
     border: none;
@@ -456,30 +439,30 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
   }
 
   /* Messages */
-  .msg { display: flex; flex-direction: column; max-width: 90%; }
-  .msg.user { align-self: flex-end; }
-  .msg.agent { align-self: flex-start; }
-  .bubble {
+  .msg-row { display: flex; flex-direction: column; max-width: 90%; }
+  .msg-row.user { align-self: flex-end; }
+  .msg-row.agent { align-self: flex-start; }
+  .msg-bubble {
     padding: 0.8rem 1.1rem;
     border-radius: 14px;
-    background: var(--agent-msg-bg);
+    background: var(--agent-msg);
     border: 1px solid var(--card-border);
-    font-size: 0.925rem;
+    font-size: 0.9rem;
     white-space: pre-wrap;
     word-break: break-word;
   }
-  .msg.user .bubble {
-    background: var(--user-msg-bg);
+  .msg-row.user .msg-bubble {
+    background: var(--user-msg);
     color: #fff;
     border: none;
   }
-  .bubble.rich { background: transparent; border: none; padding: 0; max-width: 100%; white-space: normal; }
+  .msg-bubble.rich { background: transparent; border: none; padding: 0; max-width: 100%; white-space: normal; }
 
-  /* --- A2UI Component Render Rules --- */
+  /* --- A2UI Components --- */
   .a2card { border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem; background: var(--card-bg); backdrop-filter: var(--blur); box-shadow: var(--shadow); }
   .a2card + .a2card, .a2col > .a2card { margin-top: 0.6rem; }
   .a2col { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -492,11 +475,11 @@
   .a2text.a2-caption { font-size: 0.8rem; color: var(--text-secondary); }
   .a2divider { border: none; border-top: 1px solid var(--card-border); margin: 0.5rem 0; }
   .a2img { max-width: 100%; border-radius: 8px; display: block; border: 1px solid var(--card-border); }
-  .material-symbols-outlined { font-size: 1.25rem; vertical-align: middle; color: var(--accent); }
+  .material-symbols-outlined { font-size: 1.2rem; vertical-align: middle; color: var(--accent); }
 
   footer {
     border-top: 1px solid var(--card-border);
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.875rem;
@@ -504,21 +487,25 @@
   }
 </style>
 </head>
-<body class="theme-artisan">
+<body>
 
-<!-- Top Navigation -->
+<!-- Header Navigation -->
 <nav>
-  <div class="logo">
-    <span class="material-symbols-outlined">psychology</span>
-    Harsh Verma <span>AI Portal</span>
+  <div class="nav-left">
+    <a href="#" class="logo">
+      <span class="material-symbols-outlined">psychology</span>
+      Harsh Verma <span>Digital Portal</span>
+    </a>
+    <div class="nav-tabs">
+      <a href="#hero" class="nav-tab active">Home</a>
+      <a href="#about" class="nav-tab">About Me</a>
+      <a href="#leadership" class="nav-tab">Thought Leadership</a>
+      <a href="#brewcraft" class="nav-tab">BrewCraft Lab</a>
+      <a href="#bookings" class="nav-tab">Bookings</a>
+    </div>
   </div>
 
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <div class="status-badge">
-      <div class="status-dot"></div> Memory Bank Active
-    </div>
-
-    <!-- UI Template Switcher -->
+  <div class="nav-right">
     <div class="theme-switcher">
       <button class="theme-btn active" onclick="setTheme('artisan')">✨ Artisan</button>
       <button class="theme-btn" onclick="setTheme('glassmorphism')">💎 Glass</button>
@@ -527,180 +514,218 @@
   </div>
 </nav>
 
-<!-- Main Portfolio Layout -->
-<div class="container">
-  
-  <!-- Left Column: Real Profile Content -->
+<!-- Main Portal Layout -->
+<div class="layout-grid">
+
+  <!-- Left Main Column: Dedicated Content Sections -->
   <div>
-    <!-- Hero Profile Card -->
-    <div class="profile-hero">
-      <div class="profile-header-flex">
-        <img src="https://cdn2.lnk.bi/profilepics/-2680591_20260517960.jpg" alt="Harsh Verma" class="avatar-img">
+    
+    <!-- Hero Section -->
+    <div class="section-card" id="hero">
+      <div class="hero-banner-box">
+        <img src="/hero.png" alt="Portfolio Banner" class="hero-banner-img">
+        <img src="https://cdn2.lnk.bi/profilepics/-2680591_20260517960.jpg" alt="Harsh Verma Profile" class="hero-avatar-overlay">
+      </div>
+
+      <div class="hero-details-row">
         <div>
-          <h1 class="profile-name">Harsh Verma</h1>
-          <div class="profile-title-role">Principal AI & Cybersecurity Engineer</div>
-          <div class="profile-location">
-            <span class="material-symbols-outlined" style="font-size: 1rem;">location_on</span> San Francisco Bay Area (CA), United States
+          <h1 class="hero-name">Harsh Verma <span style="font-size: 1.1rem; color: var(--text-secondary); font-weight: 500;">(he/him)</span></h1>
+          <div class="hero-title">Principal AI & Cybersecurity Engineer</div>
+          <div class="hero-meta">
+            <span class="material-symbols-outlined">location_on</span> San Francisco Bay Area (CA), United States
           </div>
         </div>
       </div>
 
-      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6;">
-        Silicon Valley-based AI & Cybersecurity leader developing autonomous software, distributed intelligence, and enterprise security platforms. 12+ years of experience building resilient production infrastructure and agentic systems.
-      </p>
-
-      <!-- Honors & Badges -->
-      <div class="badge-cloud">
-        <div class="accolade-badge"><span class="material-symbols-outlined">workspace_premium</span> Forbes Tech Council Member</div>
-        <div class="accolade-badge"><span class="material-symbols-outlined">verified</span> IEEE Senior Member</div>
-        <div class="accolade-badge"><span class="material-symbols-outlined">school</span> Stanford GSB Distinguished Scholar</div>
-        <div class="accolade-badge"><span class="material-symbols-outlined">military_tech</span> Global Recognition Award 2026</div>
-        <div class="accolade-badge"><span class="material-symbols-outlined">rocket_launch</span> Berkeley SkyDeck Advisor</div>
+      <div class="badge-container">
+        <div class="badge"><span class="material-symbols-outlined">workspace_premium</span> Forbes Tech Council Member</div>
+        <div class="badge"><span class="material-symbols-outlined">verified</span> IEEE Senior Member</div>
+        <div class="badge"><span class="material-symbols-outlined">school</span> Stanford GSB Distinguished Scholar</div>
+        <div class="badge"><span class="material-symbols-outlined">award_star</span> Global Recognition Award 2026</div>
+        <div class="badge"><span class="material-symbols-outlined">rocket_launch</span> Berkeley SkyDeck Advisor</div>
       </div>
 
-      <!-- Social & Professional Links -->
-      <div class="social-toolbar">
-        <a href="https://www.linkedin.com/in/harshverma59/" target="_blank" class="social-link">
+      <div class="social-grid">
+        <a href="https://www.linkedin.com/in/harshverma59/" target="_blank" class="social-btn">
           <span class="material-symbols-outlined">link</span> LinkedIn
         </a>
-        <a href="https://github.com/iamharshverma" target="_blank" class="social-link">
+        <a href="https://github.com/iamharshverma" target="_blank" class="social-btn">
           <span class="material-symbols-outlined">code</span> GitHub
         </a>
-        <a href="https://substack.com/@aiwithharsh" target="_blank" class="social-link">
+        <a href="https://substack.com/@aiwithharsh" target="_blank" class="social-btn">
           <span class="material-symbols-outlined">rss_feed</span> Substack
         </a>
-        <a href="https://www.harshverma.me/" target="_blank" class="social-link">
+        <a href="https://www.harshverma.me/" target="_blank" class="social-btn">
           <span class="material-symbols-outlined">language</span> HarshVerma.me
         </a>
-        <a href="https://harshverma.bio" target="_blank" class="social-link">
-          <span class="material-symbols-outlined">hub</span> Link Bio
+        <a href="https://harshverma.bio" target="_blank" class="social-btn">
+          <span class="material-symbols-outlined">hub</span> Lnk.Bio
         </a>
       </div>
     </div>
 
-    <!-- Featured Thought Leadership Publications -->
-    <div class="section-heading">
-      <span class="material-symbols-outlined">article</span> Forbes & HackerNoon Thought Leadership
-    </div>
-    <div class="grid-2">
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Forbes Tech Council</span>
-          <div class="item-title">Identity is the New Perimeter in AI Systems</div>
-          <div class="item-desc">Managing AI agents as digital actors and why network perimeters are being replaced by identity governance.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('Tell me about Harsh Verma\'s Forbes article on Identity as the new perimeter')">Read Summary</button>
+    <!-- About Me Section -->
+    <div class="section-card" id="about">
+      <div class="section-title">
+        <span class="material-symbols-outlined">person</span> About Harsh Verma
+      </div>
+      
+      <p style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.7;">
+        Harsh Verma is a Silicon Valley-based AI and cybersecurity engineering leader known for building intelligent, enterprise-scale systems that power next-generation security and automation platforms. As a Principal Engineer, he works at the intersection of artificial intelligence, cybersecurity, distributed systems, and autonomous software.
+      </p>
+
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+        Harsh believes in the <strong>3 P's</strong> of professional life: <em>Passion, Persistence, and People</em>. With over 12 years of experience in startup tech, his zeal defines him as:
+        <br>
+        <span style="color: var(--accent); font-weight: 700; display: inline-block; margin-top: 0.5rem;">"Researcher by passion 💻 & Entrepreneur at heart ❤️"</span>
+      </p>
+
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
+        <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">Education & Fellowships</h4>
+        <ul style="list-style: none; font-size: 0.875rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem;">
+          <li>• <strong>Stanford Graduate School of Business</strong> — Stanford Distinguished Scholar</li>
+          <li>• <strong>University of Texas at Dallas</strong> — MS in Computer Science (Artificial Intelligence & Intelligent Systems)</li>
+          <li>• <strong>MIT Innovation Bootcamp</strong> — Innovation Fellow</li>
+          <li>• <strong>Fellowships</strong> — IFGICT Fellow & RSA Fellow</li>
+        </ul>
       </div>
 
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">HackerNoon</span>
-          <div class="item-title">Distributed Intelligence & Multi-Agent Systems</div>
-          <div class="item-desc">Why multi-agent systems are the true successor to microservices for enterprise AI workflows.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('Tell me about Harsh Verma\'s article on Distributed Intelligence & Multi-Agent Systems')">Read Summary</button>
-      </div>
-
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">AI Journal</span>
-          <div class="item-title">Human-AI Collaboration in High-Stakes Environments</div>
-          <div class="item-desc">How autonomous AI agents collaborate with human domain experts in mission-critical applications.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('Explain Harsh Verma\'s research on Human-AI Collaboration')">Read Summary</button>
-      </div>
-
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Forbes Tech</span>
-          <div class="item-title">Personalized AI: Personalization vs Privacy</div>
-          <div class="item-desc">Evaluating the hidden trade-offs behind smarter AI models and data privacy bounds.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('Summarize Harsh Verma\'s article on Personalization vs Privacy in AI')">Read Summary</button>
+      <!-- Real Signature Graphic -->
+      <div style="text-align: right; margin-top: 1rem;">
+        <img src="https://www.harshverma.me/images/signature_new.png" alt="Harsh Verma Signature" style="max-width: 200px; opacity: 0.85;">
       </div>
     </div>
 
-    <!-- BrewCraft Specialty Coffee & IoT Extraction Guide -->
-    <div class="section-heading">
-      <span class="material-symbols-outlined">coffee</span> BrewCraft Specialty Coffee & Precision Extraction
-    </div>
-    <div class="grid-2">
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Single Origin Light Roast</span>
-          <div class="item-title">Ethiopia Yirgacheffe Worka ($22.00)</div>
-          <div class="item-desc">Jasmine, bergamot, blueberry notes. Precision IoT extraction recipe calculator included.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('Calculate a V60 pour over recipe for 22g of Ethiopia Yirgacheffe')">Calculate Recipe</button>
+    <!-- Thought Leadership & Media Section -->
+    <div class="section-card" id="leadership">
+      <div class="section-title">
+        <span class="material-symbols-outlined">newspaper</span> Forbes & HackerNoon Thought Leadership
       </div>
 
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Rare Peaberry Roast</span>
-          <div class="item-title">Kenya Nyeri AA Peaberry ($24.50)</div>
-          <div class="item-desc">Black currant, juicy tomato, cane sugar notes with bright wine-like acidity.</div>
+      <div class="card-grid-2">
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Forbes Tech Council</div>
+            <div class="item-headline">Identity is the New Perimeter</div>
+            <div class="item-body">Managing AI agents as digital actors in zero-trust enterprise security architectures.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Tell me about Harsh Verma\'s Forbes article on Identity as the new perimeter')">Read Summary</button>
         </div>
-        <button class="btn-action" onclick="sendQuery('Calculate a Chemex brew recipe for Kenya Nyeri AA Peaberry')">Calculate Recipe</button>
+
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">HackerNoon</div>
+            <div class="item-headline">Distributed Intelligence & MAS</div>
+            <div class="item-body">Why multi-agent systems represent the architectural evolution beyond microservices.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Tell me about Harsh Verma\'s article on Distributed Intelligence & Multi-Agent Systems')">Read Summary</button>
+        </div>
+
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">AI Journal</div>
+            <div class="item-headline">Human-AI Collaboration</div>
+            <div class="item-body">Designing high-stakes collaboration frameworks between autonomous agents and human experts.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Explain Harsh Verma\'s research on Human-AI Collaboration')">Read Summary</button>
+        </div>
+
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Forbes Tech</div>
+            <div class="item-headline">Personalization vs Privacy</div>
+            <div class="item-body">Hidden trade-offs behind smarter AI models and user data privacy boundaries.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Summarize Harsh Verma\'s article on Personalization vs Privacy in AI')">Read Summary</button>
+        </div>
       </div>
     </div>
 
-    <!-- Advisory, Consulting & Mentorship -->
-    <div class="section-heading">
-      <span class="material-symbols-outlined">groups</span> Advisory, Mentorship & Bookings
-    </div>
-    <div class="grid-2">
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Strategy Consultation</span>
-          <div class="item-title">1-on-1 AI Architecture Session ($350)</div>
-          <div class="item-desc">60-minute deep dive on multi-agent orchestration, Vertex AI Memory Bank, and ADK deployment.</div>
-        </div>
-        <button class="btn-action" onclick="sendQuery('I want to book a 1-on-1 AI architecture session with Harsh Verma')">Book Consultation</button>
+    <!-- BrewCraft Specialty Coffee Lab Section -->
+    <div class="section-card" id="brewcraft">
+      <div class="section-title">
+        <span class="material-symbols-outlined">local_cafe</span> BrewCraft Coffee & Precision Lab
       </div>
 
-      <div class="portfolio-item">
-        <div>
-          <span class="tag">Enterprise Audit</span>
-          <div class="item-title">Zero-Trust Cybersecurity Audit ($2,500)</div>
-          <div class="item-desc">Comprehensive audit evaluating enterprise agent permissions, secret boundaries, and safety.</div>
+      <div class="card-grid-2">
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Light Single-Origin Roast</div>
+            <div class="item-headline">Ethiopia Yirgacheffe Worka ($22.00)</div>
+            <div class="item-body">Jasmine, bergamot, blueberry notes. Precision IoT extraction recipe calculator included.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Calculate a V60 pour over recipe for 22g of Ethiopia Yirgacheffe')">Calculate Recipe</button>
         </div>
-        <button class="btn-action" onclick="sendQuery('Request details on Enterprise Zero-Trust Cybersecurity Audit')">Request Audit</button>
+
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Rare Peaberry Roast</div>
+            <div class="item-headline">Kenya Nyeri AA Peaberry ($24.50)</div>
+            <div class="item-body">Black currant, juicy tomato, cane sugar notes with bright wine-like acidity.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Calculate a Chemex brew recipe for Kenya Nyeri AA Peaberry')">Calculate Recipe</button>
+        </div>
       </div>
     </div>
+
+    <!-- Bookings & Contact Section -->
+    <div class="section-card" id="bookings">
+      <div class="section-title">
+        <span class="material-symbols-outlined">event</span> Bookings & Advisory Sessions
+      </div>
+
+      <div class="card-grid-2">
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Strategy Session</div>
+            <div class="item-headline">1:1 AI Architecture Session ($350)</div>
+            <div class="item-body">60-minute deep dive on multi-agent orchestration, Vertex AI Memory Bank, and ADK deployment.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('I want to book a 1-on-1 AI architecture session with Harsh Verma')">Book Session</button>
+        </div>
+
+        <div class="feature-item">
+          <div>
+            <div class="item-tag">Enterprise Service</div>
+            <div class="item-headline">Zero-Trust Cybersecurity Audit ($2,500)</div>
+            <div class="item-body">Comprehensive audit evaluating enterprise agent permissions, secret boundaries, and safety.</div>
+          </div>
+          <button class="btn-primary-action" onclick="sendQuery('Request details on Enterprise Zero-Trust Cybersecurity Audit')">Request Audit</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Right Column: Interactive BrewCraft AI Assistant Panel -->
+  <!-- Right Floating Column: BrewCraft AI Concierge Console -->
   <div>
-    <div class="chat-widget">
-      <div class="chat-header">
-        <div class="chat-title">
+    <div class="chat-console">
+      <div class="chat-console-header">
+        <div class="chat-console-title">
           <span class="material-symbols-outlined">smart_toy</span> BrewCraft AI Concierge
         </div>
         <span style="font-size: 0.75rem; color: var(--text-secondary);">A2UI Enabled</span>
       </div>
 
-      <!-- Live Chat Messages Log -->
-      <div class="chat-log" id="log">
-        <div class="msg agent">
-          <div class="bubble">
-👋 Welcome to Harsh Verma's AI Web Portal! I am BrewCraft, Harsh's AI concierge. Ask me about his Forbes articles, IEEE research, AI security advisory, coffee recipes, or ask me to generate custom visuals and videos!
+      <div class="chat-console-body" id="log">
+        <div class="msg-row agent">
+          <div class="msg-bubble">
+👋 Hello! I am BrewCraft, Harsh Verma's AI Concierge. Ask me about Harsh's Forbes articles, IEEE research, AI cybersecurity advisory, coffee recipes, or ask me to generate custom media!
           </div>
         </div>
       </div>
 
-      <!-- Quick Prompt Pills -->
-      <div class="quick-prompts">
-        <button class="prompt-pill" onclick="sendQuery('📚 Show Harsh Verma\'s Forbes & HackerNoon articles')">📚 Forbes Articles</button>
-        <button class="prompt-pill" onclick="sendQuery('☕ Calculate V60 recipe for Ethiopia Yirgacheffe')">☕ Brew Recipe</button>
-        <button class="prompt-pill" onclick="sendQuery('💼 Help me book an AI strategy session')">💼 Book 1:1 Session</button>
-        <button class="prompt-pill" onclick="sendQuery('🎨 Generate a visual for an AI coffee lab')">🎨 Generate Image</button>
-        <button class="prompt-pill" onclick="sendQuery('🎥 Generate a short video demo')">🎥 Generate Video</button>
+      <div class="prompt-pills-scroll">
+        <button class="pill" onclick="sendQuery('📚 Show Harsh Verma\'s Forbes & HackerNoon articles')">📚 Forbes Articles</button>
+        <button class="pill" onclick="sendQuery('☕ Calculate V60 recipe for Ethiopia Yirgacheffe')">☕ Brew Recipe</button>
+        <button class="pill" onclick="sendQuery('💼 Help me book an AI strategy session')">💼 Book 1:1 Session</button>
+        <button class="pill" onclick="sendQuery('🎨 Generate a visual for an AI coffee lab')">🎨 Generate Image</button>
+        <button class="pill" onclick="sendQuery('🎥 Generate a short video demo')">🎥 Generate Video</button>
       </div>
 
-      <!-- Form Input -->
-      <form class="chat-form" id="form">
-        <input class="chat-input" id="input" placeholder="Ask BrewCraft AI…" autocomplete="off">
-        <button class="chat-submit" type="submit">
+      <form class="chat-input-bar" id="form">
+        <input class="chat-field" id="input" placeholder="Ask BrewCraft AI…" autocomplete="off">
+        <button class="chat-btn-send" type="submit">
           <span>Send</span> <span class="material-symbols-outlined" style="font-size: 1.1rem; color: #fff;">send</span>
         </button>
       </form>
@@ -710,7 +735,7 @@
 </div>
 
 <footer>
-  <p>© 2026 Harsh Verma • Silicon Valley • Built with Google Agent Development Kit (ADK), Vertex AI Memory Bank, & Cloud Run</p>
+  <p>© 2026 Harsh Verma • Silicon Valley • Powered by Google Agent Development Kit (ADK), Vertex AI Memory Bank, & Cloud Run</p>
 </footer>
 
 <script>
@@ -744,8 +769,8 @@ function el(tag, cls, text) {
 }
 
 function bubble(who) {
-  const m = el("div", "msg " + who);
-  const b = el("div", "bubble");
+  const m = el("div", "msg-row " + who);
+  const b = el("div", "msg-bubble");
   m.appendChild(b);
   log.appendChild(m);
   log.scrollTop = log.scrollHeight;
